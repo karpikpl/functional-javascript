@@ -1,15 +1,12 @@
 /*jshint esversion: 6, node: true*/
-function curryN(fn, n, args) {
+function curryN(fn, n)   {
   n =  n || fn.length;
-  args = (args || []);
 
     return function(arg) {
-        let localArgs = args.concat(arg);
-
-        if(n == 1) {
-          return fn.apply(this, localArgs);
+        if(n === 1) {
+          return fn(arg);
         }
-        return curryN(fn, n-1, localArgs);
+        return curryN(fn.bind(this, arg), n-1);
     };
 }
 
