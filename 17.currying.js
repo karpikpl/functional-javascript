@@ -11,7 +11,7 @@ function curryN(fn, n, args) {
     }
 
     return function() {
-        args = args.concat(Array.prototype.slice.call(arguments));
+        args.push(arguments[0]);
         return curryN(fn, --n, args);
     };
 }
